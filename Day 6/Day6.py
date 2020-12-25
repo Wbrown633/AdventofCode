@@ -14,6 +14,9 @@ def parse_form(file: str):
 def create_groups(file_contents: str):
     return file_contents.split("\n\n")
 
+def parse_form_group_all_yes(file_contents: str):
+    pass
+
 def parse_form_group(answers: str) -> int:
     """Given the answers from one group, return a count of questions people 
     in this group answered yes to."""
