@@ -1,3 +1,4 @@
+import re
 
 class Bag_Rules:
     def __init__(self, rules: dict):
@@ -17,19 +18,17 @@ class Bag_Rules:
         return len(colors_with_path)
     
     def search_path(self, current_color: str, color_to_find: str) -> bool:
-        if current_color == color_to_find:
-            return True
-        
         # Get the list of possible paths from this node
         colors_to_try = self.bags[current_color]
 
+        # Checks the 
         for color in colors_to_try:
             if color == color_to_find:
                 return True
+            elif color != "no other":
+                return self.search_path(color, color_to_find)
             else:
-                self.search_path(color, color_to_find)
-                
-        return False
+                return False
 
 
 def make_dict(file: str) -> dict:
@@ -44,9 +43,23 @@ def make_dict(file: str) -> dict:
     bag_rules = {}
     
     for line in lines:
+        line = re.sub(" bags?", " ", line)
         split_line = line.split(" contain ")
         container = split_line.pop(0).strip()
-        contained = split_line
+        contained = re.findall("([a-z ]+)", split_line[0])
+        contained = list(map(strip_helper, contained))
         bag_rules[container] = contained
+
+    print(bag_rules)
         
     return bag_rules
+
+
+def strip_helper(string: str) -> str:
+    return string.strip()
+
+
+if __name__ == "__main__":
+    rules = make_dict("input.txt")
+    bag = Bag_Rules(rules)
+    print("Number of paths to Shiny Gold: ", bag.find_paths_to_bag("shiny gold"))

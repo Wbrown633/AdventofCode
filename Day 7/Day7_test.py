@@ -13,7 +13,7 @@ class TestCases(unittest.TestCase):
         test_bag = Bag_Rules(rules)
         self.assertEqual(test_bag.find_paths_to_bag("drab brown"), 1)
 
-    def test_search_path_example(self):
+    def test_find_paths_to_bag_example(self):
         rules = {"light red" : ["bright white", "muted yellow"],
                  "dark orange" : ["bright white", "muted yellow"],
                  "bright white" : ["shiny gold"],
@@ -25,6 +25,3 @@ class TestCases(unittest.TestCase):
                  "dotted black" : []}
         test_bag = Bag_Rules(rules)
         self.assertEqual(test_bag.find_paths_to_bag("shiny gold"), 4)
-
-    def test_find_paths_to_bag(self):
-        pass
