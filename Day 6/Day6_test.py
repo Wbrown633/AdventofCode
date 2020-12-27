@@ -18,8 +18,12 @@ class TestCase(unittest.TestCase):
         self.assertEqual(parse_form_group("abcx\nabcy\nabcz\n"), 6)
 
     def test_parse_form_group_all_yes(self):
-        self.assertEqual(parse_form_group_all_yes("a\na\na\na"), 4)
-        self.assertEqual(parse_form_group_all_yes("abc"), 3)
+        self.assertEqual(parse_form_group_all_yes("a\na\na\na"), 1)
+        self.assertEqual(parse_form_group_all_yes("abc\nab\nab\nabe"), 2)
+        self.assertEqual(parse_form_group_all_yes("ab\nabefgi\nab"), 2)
+        self.assertEqual(parse_form_group_all_yes("ab\n ab"), 2)
+        self.assertEqual(parse_form_group_all_yes("abcdefghijklmnopqrstuvwxyz"), 26)
+        self.assertEqual(parse_form_group_all_yes("abcx\nabcy\nabcz"), 3)
         
 
     

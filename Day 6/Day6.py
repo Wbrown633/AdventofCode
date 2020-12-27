@@ -34,13 +34,12 @@ def parse_form_group_all_yes(group_contents: str) -> int:
         else:
             letter_counts[char] += 1
 
-    print(letter_counts)
     num_of_group_members = find_num_of_group_members(letter_counts)
 
     for char in letter_counts.keys():
         if letter_counts[char] == num_of_group_members:
-            print("Letter: ", char, "Add: ", letter_counts[char])
-            sum_of_answers += letter_counts[char]
+            print("Letter: ", char, "Count: ", letter_counts[char])
+            sum_of_answers += 1
 
     return sum_of_answers
 
