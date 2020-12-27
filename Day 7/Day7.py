@@ -11,6 +11,7 @@ class Bag_Rules:
         colors_with_path = []
         for color in self.bags.keys():
             if self.search_path(color, color_to_find):
+                print(color, "Has a path!")
                 colors_with_path.append(color)
             
         return len(colors_with_path)
